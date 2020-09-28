@@ -86,12 +86,23 @@ viewControllerBlacklist:(nullable NSArray<NSString*>*) viewControllerBlacklist {
       UIViewController* presentedViewController = [self getViewControllerBlacklisted: viewControllerBlacklist];
       UIView * view = [self getToastView:presentedViewController];
         UIView __weak *blockView = view;
+        
+        CSToastStyle *style = [[CSToastStyle alloc] initWithDefaultStyle];
+        style.messageColor = [UIColor blackColor];
+        style.titleColor = [UIColor blackColor];
+        style.backgroundColor = [UIColor colorWithRed: 0.93 green: 0.93 blue: 0.93 alpha: 1.00];
+        style.horizontalPadding = 12.0;
+        style.verticalPadding = 12.0;
+        style.cornerRadius = 22.0;
+        style.titleFont = [UIFont boldSystemFontOfSize:14.0];
+        style.messageFont = [UIFont systemFontOfSize:14.0];
+        
         [view makeToast:msg
                duration:duration
                position:gravity
                   title:nil
                   image:nil
-                  style:nil
+                  style:style
              completion:^(BOOL didTap) {
                  [blockView removeFromSuperview];
              }];
